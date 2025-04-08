@@ -1,17 +1,39 @@
-// ChartComponent.jsx
 import React, { useEffect, useState } from 'react';
 import Plot from 'react-plotly.js';
 
-const ChartComponent = () => {
+// Función para convertir la fecha de formato YYYY-MM-DD a DD-MM-YYYY
+const formatDate = (date) => {
+  const parts = date.split('-'); // Separar por el guion
+  return `${parts[2]}-${parts[1]}-${parts[0]}`; // Reorganizar como DD-MM-YYYY
+};
+
+const RibbonPlot3D = ({ selectedDate }) => {
   const [data, setData] = useState({ x: [], y: [], z: [] });
+  const [loading, setLoading] = useState(false); // Estado de carga
 
   useEffect(() => {
-    // Obtener los datos de ventas desde el backend
-    fetch('http://localhost:8000/api/ventas-por-hora/')
-      .then((response) => response.json())
-      .then((data) => setData(data))
-      .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+    const fetchData = async () => {
+      const formattedDate = formatDate(selectedDate); // Formatear la fecha correctamente
+      setLoading(true); // Activar el estado de carga
+
+      try {
+        const response = await fetch(`http://localhost:8000/api/ventas-por-hora2/?fecha=${formattedDate}`);
+        if (response.ok) {
+          const result = await response.json();
+          setData(result); // Actualizar los datos con la respuesta de la API
+        } else {
+          console.error('Error en la respuesta de la API:', response.status);
+        }
+      } catch (error) {
+        console.error('Error al obtener los datos:', error);
+      } finally {
+        setLoading(false); // Desactivar el estado de carga
+      }
+    };
+
+    fetchData(); // Llamada a la API para obtener los datos
+
+  }, [selectedDate]); // Re-fetch cuando la fecha seleccionada cambie
 
   const trace = {
     x: data.x,  // horas
@@ -39,13 +61,20 @@ const ChartComponent = () => {
   return (
     <div>
       <h1>Ventas 3D</h1>
-      <Plot
-        data={[trace]}
-        layout={layout}
-        style={{ width: '100%', height: '100%' }}
-      />
+
+      {/* Mostrar mensaje de carga mientras se obtienen los datos */}
+      {loading ? (
+        <div className="text-center">Cargando datos...</div>
+      ) : (
+        // Mostrar la gráfica solo si no está cargando
+        <Plot
+          data={[trace]}
+          layout={layout}
+          style={{ width: '100%', height: '100%' }}
+        />
+      )}
     </div>
   );
 };
 
-export default ChartComponent;
+export default RibbonPlot3D;
