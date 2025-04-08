@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import RibbonPlot3D from "./components/RibbonPlot3D";
+import GraficaPronostico from "./components/GraficaPronostico";
 import './App.css';
 
 // Función para obtener los lunes entre dos fechas
@@ -120,6 +121,7 @@ function App() {
             ) : (
               forecast !== null && <p className="h1">Predicción: {forecast}</p>
             )}
+            <GraficaPronostico categoriaId={selectedCategory} bloqueHorario={selectedBlock} />
           </div>
         </div>
       </div>
