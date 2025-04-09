@@ -161,14 +161,14 @@ const RibbonPlot3D = ({ selectedDate }) => {
 
   return (
     <div>
-      <h1>Ventas 3D</h1>
+      <br></br>
       {loading ? (
         <div className="text-center">Cargando datos...</div>
       ) : (
         <Plot
           data={categoryTraces}
           layout={layout}
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: '100%', height: '825px' }}
         />
       )}
     </div>

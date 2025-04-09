@@ -41,7 +41,7 @@
 }
 
 .Informacion {
-  height: 705px;
+  height: auto;
   display: flex;
   gap: 20px;
   padding: 20px;
@@ -81,7 +81,8 @@
 .TituloProContainer {
   display: flex;
   justify-content: center;  /* Centra horizontalmente */
-  align-items: center; 
+  align-items: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .TituloPro {

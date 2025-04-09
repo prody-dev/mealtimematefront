@@ -78,7 +78,7 @@ function App() {
       {/* Content */}
       <div className="Informacion">
         <div className="left">
-          <h1 className="h1">Grafica</h1>
+          <h1 className="h1">Gráfica</h1>
           <RibbonPlot3D selectedDate={selectedDate} />
           
         </div>
@@ -86,13 +86,13 @@ function App() {
           <h1 className="h1">Filtros</h1>
           <div className="Cosas">
             <div className="Categorias">
-              <h2 className="h2">Categoria</h2>
+              <h2 className="h2">Categoría</h2>
               <select 
                 className="select" 
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
               >
-                <option value="" disabled>Selecciona una Categoria</option>
+                <option value="" disabled>Selecciona una Categoría</option>
                 <option value="1">Burritos</option>
                 <option value="2">Postres</option>
                 <option value="3">Snacks</option>
@@ -115,7 +115,7 @@ function App() {
             </div>
           </div>
           <div className="Prediccion">
-            <h2 className="h1">Predicción para Categoria entre las Hora</h2>
+            <h2 className="h1">Predicción para Categoría entre las Hora</h2>
             <button onClick={handleForecast} className="Botones">
               Obtener Predicción
             </button>
