@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import RibbonPlot3D from "./components/RibbonPlot3D";
 import GraficaPronostico from "./components/GraficaPronostico";
 import './App.css';
+import Grafica3D from './components/Grafica3D'; // importar
+
 
 // Función para obtener los lunes entre dos fechas
 const getMondaysBetweenDates = (startDate, endDate) => {
@@ -78,6 +80,7 @@ function App() {
         <div className="left">
           <h1 className="h1">Grafica</h1>
           <RibbonPlot3D selectedDate={selectedDate} />
+          
         </div>
         <div className="right">
           <h1 className="h1">Filtros</h1>
